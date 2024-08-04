@@ -61,6 +61,7 @@
             this.tbt_Username.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.tbt_Username.Location = new System.Drawing.Point(142, 28);
             this.tbt_Username.Name = "tbt_Username";
+            this.tbt_Username.PlaceholderText = "Hãy nhập username";
             this.tbt_Username.Size = new System.Drawing.Size(709, 34);
             this.tbt_Username.TabIndex = 2;
             // 
@@ -69,6 +70,8 @@
             this.tbt_Password.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.tbt_Password.Location = new System.Drawing.Point(143, 87);
             this.tbt_Password.Name = "tbt_Password";
+            this.tbt_Password.PasswordChar = '*';
+            this.tbt_Password.PlaceholderText = "Hãy nhập mật khẩu";
             this.tbt_Password.Size = new System.Drawing.Size(708, 34);
             this.tbt_Password.TabIndex = 3;
             // 
@@ -82,6 +85,7 @@
             this.cb_ShowPass.TabIndex = 4;
             this.cb_ShowPass.Text = "Hiển thị mật khẩu";
             this.cb_ShowPass.UseVisualStyleBackColor = true;
+            this.cb_ShowPass.CheckedChanged += new System.EventHandler(this.cb_ShowPass_CheckedChanged);
             // 
             // btn_Login
             // 

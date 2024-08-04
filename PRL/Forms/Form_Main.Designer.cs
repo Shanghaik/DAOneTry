@@ -34,6 +34,7 @@
             this.btn_QLNV = new System.Windows.Forms.Button();
             this.btn_TK = new System.Windows.Forms.Button();
             this.lb_Account = new System.Windows.Forms.Label();
+            this.pn_MainProgram = new System.Windows.Forms.Panel();
             this.SuspendLayout();
             // 
             // btn_Home
@@ -75,6 +76,7 @@
             this.btn_QLNV.TabIndex = 3;
             this.btn_QLNV.Text = "Quản lý NV";
             this.btn_QLNV.UseVisualStyleBackColor = true;
+            this.btn_QLNV.Click += new System.EventHandler(this.btn_QLNV_Click);
             // 
             // btn_TK
             // 
@@ -96,11 +98,20 @@
             this.lb_Account.TabIndex = 5;
             this.lb_Account.Text = "....";
             // 
+            // pn_MainProgram
+            // 
+            this.pn_MainProgram.BackColor = System.Drawing.SystemColors.Info;
+            this.pn_MainProgram.Location = new System.Drawing.Point(224, 16);
+            this.pn_MainProgram.Name = "pn_MainProgram";
+            this.pn_MainProgram.Size = new System.Drawing.Size(1376, 668);
+            this.pn_MainProgram.TabIndex = 6;
+            // 
             // Form_Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1612, 704);
+            this.Controls.Add(this.pn_MainProgram);
             this.Controls.Add(this.lb_Account);
             this.Controls.Add(this.btn_TK);
             this.Controls.Add(this.btn_QLNV);
@@ -123,5 +134,6 @@
         private Button btn_QLNV;
         private Button btn_TK;
         private Label lb_Account;
+        private Panel pn_MainProgram;
     }
 }

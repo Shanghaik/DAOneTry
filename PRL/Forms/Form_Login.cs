@@ -18,7 +18,6 @@ namespace PRL.Forms
         {
             InitializeComponent();
         }
-
         private void btn_Login_Click(object sender, EventArgs e)
         {
             _accountService = new AccountServices();
@@ -28,11 +27,24 @@ namespace PRL.Forms
             if (string.IsNullOrEmpty(accountInfor))
             {
                 MessageBox.Show("Đăng nhập thất bại");
-            }else
+            }else if (accountInfor.Split(':')[0] == "0") // Cắt ra để lấy role, nếu = 0 tức là tài khoản đã bị khóa
+            {
+                MessageBox.Show("Tài khoản của bạn đã bị khóa, vui lòng kiểm tra xem đã bị đuổi việc chưa?");
+            }
+            else
             {
                 Form_Main main = new Form_Main(accountInfor); // Tạo form main truyền account infor qua
                 main.Show();
             }
+        }
+        private void cb_ShowPass_CheckedChanged(object sender, EventArgs e)
+        {
+            if (cb_ShowPass.Checked)
+            {
+                tbt_Password.PasswordChar = '\0'; // Kí tự rỗng
+            }
+            else tbt_Password.PasswordChar = '*';
+            
         }
     }
 }
