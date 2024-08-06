@@ -40,5 +40,33 @@ namespace PRL.Forms
             form_Account.FormBorderStyle = FormBorderStyle.None;
             form_Account.Show();
         }
+
+        private void btn_Sale_Click(object sender, EventArgs e)
+        {
+            Form_Sale form_Sale = new Form_Sale();
+            form_Sale.TopLevel = false;
+            pn_MainProgram.Controls.Add(form_Sale);
+            form_Sale.FormBorderStyle = FormBorderStyle.None;
+            form_Sale.Show();
+        }
+
+        private void btn_QLSP_Click(object sender, EventArgs e)
+        {
+            pn_MainProgram.Controls.Clear();
+            Form_QLSP form_QLSP = new Form_QLSP();
+            form_QLSP.TopLevel = false;
+            pn_MainProgram.Controls.Add(form_QLSP);
+            form_QLSP.FormBorderStyle = FormBorderStyle.None;
+            form_QLSP.Show();
+        }
+
+        private void btn_Sell_Click(object sender, EventArgs e)
+        {
+            Form_BanHang form_BanHang= new Form_BanHang();
+            form_BanHang.TopLevel = false;
+            pn_MainProgram.Controls.Add(form_BanHang);
+            form_BanHang.FormBorderStyle = FormBorderStyle.None;
+            form_BanHang.Show();
+        }
     }
 }

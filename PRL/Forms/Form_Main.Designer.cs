@@ -35,6 +35,7 @@
             this.btn_TK = new System.Windows.Forms.Button();
             this.lb_Account = new System.Windows.Forms.Label();
             this.pn_MainProgram = new System.Windows.Forms.Panel();
+            this.btn_Sale = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // btn_Home
@@ -56,6 +57,7 @@
             this.btn_Sell.TabIndex = 1;
             this.btn_Sell.Text = "Bán hàng";
             this.btn_Sell.UseVisualStyleBackColor = true;
+            this.btn_Sell.Click += new System.EventHandler(this.btn_Sell_Click);
             // 
             // btn_QLSP
             // 
@@ -66,6 +68,7 @@
             this.btn_QLSP.TabIndex = 2;
             this.btn_QLSP.Text = "Quản lý SP";
             this.btn_QLSP.UseVisualStyleBackColor = true;
+            this.btn_QLSP.Click += new System.EventHandler(this.btn_QLSP_Click);
             // 
             // btn_QLNV
             // 
@@ -106,11 +109,23 @@
             this.pn_MainProgram.Size = new System.Drawing.Size(1376, 668);
             this.pn_MainProgram.TabIndex = 6;
             // 
+            // btn_Sale
+            // 
+            this.btn_Sale.Font = new System.Drawing.Font("Segoe UI", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.btn_Sale.Location = new System.Drawing.Point(16, 423);
+            this.btn_Sale.Name = "btn_Sale";
+            this.btn_Sale.Size = new System.Drawing.Size(195, 70);
+            this.btn_Sale.TabIndex = 7;
+            this.btn_Sale.Text = "Quản lý sale";
+            this.btn_Sale.UseVisualStyleBackColor = true;
+            this.btn_Sale.Click += new System.EventHandler(this.btn_Sale_Click);
+            // 
             // Form_Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1612, 704);
+            this.Controls.Add(this.btn_Sale);
             this.Controls.Add(this.pn_MainProgram);
             this.Controls.Add(this.lb_Account);
             this.Controls.Add(this.btn_TK);
@@ -135,5 +150,6 @@
         private Button btn_TK;
         private Label lb_Account;
         private Panel pn_MainProgram;
+        private Button btn_Sale;
     }
 }
