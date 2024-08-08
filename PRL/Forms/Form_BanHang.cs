@@ -6,6 +6,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -16,9 +17,13 @@ namespace PRL.Forms
 {
     public partial class Form_BanHang : Form
     {
+        CustomerServices _customerServices;
         ProductServices _productServices;
         SaleServices _saleServices;
+        BillServices _billServices;
+        BillDetailsServices _billDetailsService;
         List<Product> _products;
+        List<Customer> _customers;
         public Form_BanHang()
         {
             InitializeComponent();
@@ -120,6 +125,8 @@ namespace PRL.Forms
             btn_Mua.TabIndex = 6;
             btn_Mua.Text = "Mua Hàng";
             btn_Mua.UseVisualStyleBackColor = true;
+            // Tạo sự kiện để mua hàng
+            btn_Mua.Click += Btn_Mua_Click;
             // 
             // tbt_SLBan
             // 
@@ -141,8 +148,9 @@ namespace PRL.Forms
             // 
             // 
             Panel pn = new Panel();
+            pn.Name = sp.Id.ToString(); // gán tên cho Panel để lưu ID cho sản phâm
             pn.Size = new Size(300, 300);
-            pn.Name = sp.Id.ToString();
+
             pn.Controls.Add(tbt_SLBan);
             pn.Controls.Add(btn_Mua);
             pn.Controls.Add(lb_XuatXu);
@@ -156,6 +164,52 @@ namespace PRL.Forms
             pn.Controls.Add(lb_GiaMoi);
             return pn;
         }
+
+        private void Btn_Mua_Click(object? sender, EventArgs e)
+        {
+            long price = 0;
+            int amount = 0;
+            // Lấy thông tin của panel chứa SP
+            Button btnMua = sender as Button;
+            Panel cpnSP = btnMua.Parent as Panel;
+            // Lấy danh sách Label trong Panel ra
+            List<Label> labels = new List<Label>();
+            List<TextBox> textboxs = new List<TextBox>();
+            foreach (var item in cpnSP.Controls)
+            {
+                if (item is Label) labels.Add(item as Label);
+                if (item is TextBox) textboxs.Add(item as TextBox);
+            }
+            foreach (var item in labels)
+            {
+                if (item.Name == "lb_GiaMoi")
+                {
+                    price = Convert.ToInt64(item.Text); break;
+                }
+            }
+            foreach (var item in textboxs)
+            {
+                if (item.Name == "tbt_SLBan")
+                {
+                    amount = Convert.ToInt32(item.Text); break;
+                }
+            }
+            // Lấy các thuộc tính vần thiết
+            Guid productId = Guid.Parse(cpnSP.Name);
+            Guid billId = Guid.Parse(lb_MaHD.Text);
+            _billDetailsService = new BillDetailsServices();
+            _billDetailsService.AddToBill(billId, productId, price, amount);
+            LoadBillDetails(Guid.Parse(lb_MaHD.Text));
+        }
+
+        public void LoadBillDetails(Guid billId)
+        {
+            _billDetailsService = new BillDetailsServices();
+            var billDetails = _billDetailsService.GetAllByBillId(billId);
+            dtg_HDCT.DataSource = null;
+            dtg_HDCT.DataSource = billDetails;
+        }
+
         public void LoadProductByPage(int page) // Load sản phẩm theo trang, mỗi trang 4 sp
         {
             tlp_Product.Controls.Clear();
@@ -210,14 +264,14 @@ namespace PRL.Forms
         private void Form_BanHang_Load(object sender, EventArgs e)
         {
             LoadProductByPage(1);
-            
+            LoadBill();
         }
 
         private void lbNext_Click(object sender, EventArgs e)
         {
             var products = _productServices.GetAllProducts();
             int count = products.Count;
-            if (Convert.ToInt32(lb_Page.Text) < count / 4 && count % 4 == 0 
+            if (Convert.ToInt32(lb_Page.Text) < count / 4 && count % 4 == 0
                 || Convert.ToInt32(lb_Page.Text) <= count / 4 && count % 4 != 0)
             {
                 lb_Page.Text = Convert.ToInt32(lb_Page.Text) + 1 + "";
@@ -235,7 +289,69 @@ namespace PRL.Forms
 
         }
 
-        private void label1_Click(object sender, EventArgs e)
+
+
+        private void cbb_Phone_TextChanged(object sender, EventArgs e)
+        {
+            int index = cbb_Phone.SelectedIndex;
+            tbt_Name.Text = _customers[index].Name + "-" + _customers[index].PhoneNumber;
+        }
+
+        private void tbt_Phone_TextChanged(object sender, EventArgs e)
+        {
+            cbb_Phone.Items.Clear();
+            _customerServices = new CustomerServices();
+            string searchPhone = tbt_Phone.Text;
+            _customers = _customerServices.GetByPhone(searchPhone); // tìm kiếm và hiện ra khi cần
+            foreach (var item in _customers)
+            {
+                cbb_Phone.Items.Add(item.Name);
+            }
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void createBill_Click(object sender, EventArgs e)
+        {
+            string accountId = "";
+            var formMain = this.Parent.Parent as Form; // Lấy từ form Cha là form Main
+            // this là formBanHang cho nên Parent của nó là Panel, Parent của panel mới là form Main
+            List<Label> labels = new List<Label>();
+            foreach (var item in formMain.Controls)
+            {
+                if (item is Label) labels.Add((Label)item);
+            }
+            // Lấy hết label từ form cha
+            foreach (var item in labels)
+            {
+                if (item.Name == "lb_Account")
+                {
+                    accountId = item.Text; break;
+                }
+            } // từ các label mình lấy ra label nào có tên là Account ID để thông qua đó lấy ID
+            _billServices = new BillServices();
+            _billServices.Create(accountId, cbb_Phone.Text);
+            LoadBill();
+        }
+        public void LoadBill()
+        {
+            dtg_HD.DataSource = null;
+            _billServices = new BillServices();
+            var bills = _billServices.GetWaitBill();
+            dtg_HD.DataSource = bills;
+        }
+
+        private void dtg_HD_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            DataGridViewRow row = dtg_HD.Rows[e.RowIndex];
+            lb_MaHD.Text = row.Cells[0].Value.ToString();
+            LoadBillDetails(Guid.Parse(row.Cells[0].Value.ToString()));
+        }
+
+        private void label6_Click(object sender, EventArgs e)
         {
 
         }

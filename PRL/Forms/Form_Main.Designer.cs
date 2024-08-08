@@ -36,6 +36,8 @@
             this.lb_Account = new System.Windows.Forms.Label();
             this.pn_MainProgram = new System.Windows.Forms.Panel();
             this.btn_Sale = new System.Windows.Forms.Button();
+            this.btn_QLVoucher = new System.Windows.Forms.Button();
+            this.btn_QLKH = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // btn_Home
@@ -120,11 +122,34 @@
             this.btn_Sale.UseVisualStyleBackColor = true;
             this.btn_Sale.Click += new System.EventHandler(this.btn_Sale_Click);
             // 
+            // btn_QLVoucher
+            // 
+            this.btn_QLVoucher.Font = new System.Drawing.Font("Segoe UI", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.btn_QLVoucher.Location = new System.Drawing.Point(17, 499);
+            this.btn_QLVoucher.Name = "btn_QLVoucher";
+            this.btn_QLVoucher.Size = new System.Drawing.Size(194, 63);
+            this.btn_QLVoucher.TabIndex = 8;
+            this.btn_QLVoucher.Text = "QL Voucher";
+            this.btn_QLVoucher.UseVisualStyleBackColor = true;
+            // 
+            // btn_QLKH
+            // 
+            this.btn_QLKH.Font = new System.Drawing.Font("Segoe UI", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.btn_QLKH.Location = new System.Drawing.Point(20, 571);
+            this.btn_QLKH.Name = "btn_QLKH";
+            this.btn_QLKH.Size = new System.Drawing.Size(191, 60);
+            this.btn_QLKH.TabIndex = 9;
+            this.btn_QLKH.Text = "QL Khách";
+            this.btn_QLKH.UseVisualStyleBackColor = true;
+            this.btn_QLKH.Click += new System.EventHandler(this.btn_QLKH_Click);
+            // 
             // Form_Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1612, 704);
+            this.Controls.Add(this.btn_QLKH);
+            this.Controls.Add(this.btn_QLVoucher);
             this.Controls.Add(this.btn_Sale);
             this.Controls.Add(this.pn_MainProgram);
             this.Controls.Add(this.lb_Account);
@@ -151,5 +176,7 @@
         private Label lb_Account;
         private Panel pn_MainProgram;
         private Button btn_Sale;
+        private Button btn_QLVoucher;
+        private Button btn_QLKH;
     }
 }

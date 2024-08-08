@@ -12,7 +12,7 @@ namespace DAL_BUS.DAL
         [Key]
         public string PhoneNumber { get; set; }
         public string Name { get; set; }
-        public int Point { get; set; }
+        public int? Point { get; set; }
         // Navi
         public virtual List<Bill> Bills { get; set; }
     }

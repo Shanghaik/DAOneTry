@@ -70,5 +70,15 @@ namespace PRL.Forms
             form_BanHang.FormBorderStyle = FormBorderStyle.None;
             form_BanHang.Show();
         }
+
+        private void btn_QLKH_Click(object sender, EventArgs e)
+        {
+            pn_MainProgram.Controls.Clear();
+            Form_Customer form_Cus = new Form_Customer();
+            form_Cus.TopLevel = false;
+            pn_MainProgram.Controls.Add(form_Cus);
+            form_Cus.FormBorderStyle = FormBorderStyle.None;
+            form_Cus.Show();
+        }
     }
 }
