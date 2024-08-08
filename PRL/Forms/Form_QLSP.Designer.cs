@@ -45,6 +45,8 @@
             this.ptb_Image = new System.Windows.Forms.PictureBox();
             this.tbt_XuatXu = new System.Windows.Forms.TextBox();
             this.tbt_Soluong = new System.Windows.Forms.TextBox();
+            this.label7 = new System.Windows.Forms.Label();
+            this.cbb_Sale = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.dtg_Data)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ptb_Image)).BeginInit();
             this.SuspendLayout();
@@ -100,7 +102,7 @@
             "Không hoạt động"});
             this.cbb_Status.Location = new System.Drawing.Point(207, 289);
             this.cbb_Status.Name = "cbb_Status";
-            this.cbb_Status.Size = new System.Drawing.Size(333, 36);
+            this.cbb_Status.Size = new System.Drawing.Size(102, 36);
             this.cbb_Status.TabIndex = 27;
             // 
             // tbt_Price
@@ -213,11 +215,31 @@
             this.tbt_Soluong.Size = new System.Drawing.Size(571, 34);
             this.tbt_Soluong.TabIndex = 34;
             // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.label7.Location = new System.Drawing.Point(357, 292);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(48, 28);
+            this.label7.TabIndex = 21;
+            this.label7.Text = "Sale";
+            // 
+            // cbb_Sale
+            // 
+            this.cbb_Sale.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.cbb_Sale.FormattingEnabled = true;
+            this.cbb_Sale.Location = new System.Drawing.Point(450, 289);
+            this.cbb_Sale.Name = "cbb_Sale";
+            this.cbb_Sale.Size = new System.Drawing.Size(329, 36);
+            this.cbb_Sale.TabIndex = 35;
+            // 
             // Form_QLSP
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1358, 621);
+            this.Controls.Add(this.cbb_Sale);
             this.Controls.Add(this.tbt_Soluong);
             this.Controls.Add(this.tbt_XuatXu);
             this.Controls.Add(this.ptb_Image);
@@ -229,6 +251,7 @@
             this.Controls.Add(this.tbt_Price);
             this.Controls.Add(this.tbt_Mota);
             this.Controls.Add(this.tbt_Ten);
+            this.Controls.Add(this.label7);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.label4);
@@ -264,5 +287,7 @@
         private PictureBox ptb_Image;
         private TextBox tbt_XuatXu;
         private TextBox tbt_Soluong;
+        private Label label7;
+        private ComboBox cbb_Sale;
     }
 }

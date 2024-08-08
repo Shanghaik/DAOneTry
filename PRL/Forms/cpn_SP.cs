@@ -136,5 +136,10 @@ namespace PRL.Forms
             pn.Controls.Add(ptb_Img);
             return pn;
         }
+
+        private void cpn_SP_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

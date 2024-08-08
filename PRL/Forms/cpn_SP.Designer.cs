@@ -38,6 +38,7 @@
             this.lb_SLValue = new System.Windows.Forms.Label();
             this.btn_Mua = new System.Windows.Forms.Button();
             this.tbt_SLBan = new System.Windows.Forms.TextBox();
+            this.lb_GiaMoi = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.ptb_Img)).BeginInit();
             this.SuspendLayout();
             // 
@@ -97,11 +98,11 @@
             // lb_GiaValue
             // 
             this.lb_GiaValue.AutoSize = true;
-            this.lb_GiaValue.Location = new System.Drawing.Point(148, 64);
+            this.lb_GiaValue.Location = new System.Drawing.Point(148, 77);
             this.lb_GiaValue.Name = "lb_GiaValue";
-            this.lb_GiaValue.Size = new System.Drawing.Size(49, 20);
+            this.lb_GiaValue.Size = new System.Drawing.Size(97, 20);
             this.lb_GiaValue.TabIndex = 2;
-            this.lb_GiaValue.Text = "10000";
+            this.lb_GiaValue.Text = "10000000000";
             // 
             // lb_SLValue
             // 
@@ -129,6 +130,15 @@
             this.tbt_SLBan.Size = new System.Drawing.Size(122, 27);
             this.tbt_SLBan.TabIndex = 7;
             // 
+            // lb_GiaMoi
+            // 
+            this.lb_GiaMoi.AutoSize = true;
+            this.lb_GiaMoi.Location = new System.Drawing.Point(148, 57);
+            this.lb_GiaMoi.Name = "lb_GiaMoi";
+            this.lb_GiaMoi.Size = new System.Drawing.Size(49, 20);
+            this.lb_GiaMoi.TabIndex = 2;
+            this.lb_GiaMoi.Text = "10000";
+            // 
             // cpn_SP
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
@@ -140,12 +150,14 @@
             this.Controls.Add(this.lb_Mota);
             this.Controls.Add(this.lb_SL);
             this.Controls.Add(this.lb_SLValue);
+            this.Controls.Add(this.lb_GiaMoi);
             this.Controls.Add(this.lb_GiaValue);
             this.Controls.Add(this.lb_Gia);
             this.Controls.Add(this.tb_Name);
             this.Controls.Add(this.ptb_Img);
             this.Name = "cpn_SP";
             this.Text = "cpn_SP";
+            this.Load += new System.EventHandler(this.cpn_SP_Load);
             ((System.ComponentModel.ISupportInitialize)(this.ptb_Img)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -164,5 +176,6 @@
         private Label lb_SLValue;
         private Button btn_Mua;
         private TextBox tbt_SLBan;
+        private Label lb_GiaMoi;
     }
 }

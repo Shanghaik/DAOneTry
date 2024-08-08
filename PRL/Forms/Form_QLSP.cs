@@ -14,12 +14,15 @@ namespace PRL.Forms
 {
     public partial class Form_QLSP : Form
     {
+        SaleServices _saleServices;
         ProductServices _services;
+        List<Sale> activeSales;
         public Form_QLSP()
         {
             InitializeComponent();
             ptb_Image.SizeMode = PictureBoxSizeMode.StretchImage;
             _services= new ProductServices();
+            _saleServices = new SaleServices();
         }
 
         private void btn_Add_Click(object sender, EventArgs e)
@@ -33,7 +36,8 @@ namespace PRL.Forms
                 Price = Convert.ToInt64(tbt_Price.Text),
                 TotalAmount = Convert.ToInt32(tbt_Soluong.Text),
                 Status = cbb_Status.SelectedIndex,
-                ImgURL = ptb_Image.ImageLocation
+                ImgURL = ptb_Image.ImageLocation,
+                SaleID = activeSales[cbb_Sale.SelectedIndex].Id // Vị trí của Sale trong list chính là vị trí của nó trong cbb
             };
             MessageBox.Show(_services.CreateProduct(product));
             LoadDataToGridView();
@@ -47,6 +51,11 @@ namespace PRL.Forms
 
         private void Form_QLSP_Load(object sender, EventArgs e)
         {
+            activeSales = _saleServices.GetActiveSale(); /// danh sách các sale đang hoạt động
+            foreach (var item in activeSales)
+            {
+                cbb_Sale.Items.Add(item.Name);
+            }
             LoadDataToGridView();
         }
 

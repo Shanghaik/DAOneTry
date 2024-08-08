@@ -43,6 +43,7 @@ namespace PRL.Forms
 
         private void btn_Sale_Click(object sender, EventArgs e)
         {
+            pn_MainProgram.Controls.Clear();
             Form_Sale form_Sale = new Form_Sale();
             form_Sale.TopLevel = false;
             pn_MainProgram.Controls.Add(form_Sale);
@@ -62,6 +63,7 @@ namespace PRL.Forms
 
         private void btn_Sell_Click(object sender, EventArgs e)
         {
+            pn_MainProgram.Controls.Clear();
             Form_BanHang form_BanHang= new Form_BanHang();
             form_BanHang.TopLevel = false;
             pn_MainProgram.Controls.Add(form_BanHang);

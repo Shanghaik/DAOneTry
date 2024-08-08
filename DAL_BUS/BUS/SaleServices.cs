@@ -25,19 +25,25 @@ namespace DAL_BUS.BUS
         public string CreateSales(Sale sale)
         {
             // Validate
-            if (sale.StartDate < DateTime.Now || sale.EndDate < DateTime.Now || sale.StartDate > sale.EndDate)
+            if (sale.EndDate < DateTime.Now || sale.StartDate > sale.EndDate)
             {
                 return "Kiểm tra lại thời hạn của chương trình khuyến mãi";
             }
             else if (sale.Percent > 100 || sale.Percent < 0)
             {
                 return "% giảm không thể ngoài khoảng 0-100";
-            }else
+            }
+            else
             {
                 _context.Sales.Add(sale);
                 _context.SaveChanges();
                 return "Tạo mới khuyến mãi thành công";
             }
+        }
+        public List<Sale> GetActiveSale() // Lấy ra danh sách các sale đang hoạt động
+        {
+            return _context.Sales.Where(p => p.StartDate <= DateTime.Now
+            && p.EndDate >= DateTime.Now && p.Status == 0).ToList(); // Hoạt động = 0, ko HĐ = 1
         }
     }
 }
